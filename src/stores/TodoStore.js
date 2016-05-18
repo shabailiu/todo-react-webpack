@@ -64,7 +64,7 @@ const TodoStore = new TodoStoreClass();
 
 // Register callback with AppDispatcher
 AppDispatcher.register((action) => {
-    switch(action.actionType) {
+    switch (action.actionType) {
 
     case TodoConstants.TODO_CREATE:
         addTodo(action.value);

@@ -16,7 +16,7 @@ class TodoList extends Component {
     }
 
     _addTodo(value) {
-        if(value) {
+        if (value) {
             TodoActions.create(value);
         }
     }
@@ -26,7 +26,7 @@ class TodoList extends Component {
     }
 
     _updateTodo(id, value) {
-        if(id && value) {
+        if (id && value) {
             TodoActions.update(id, value);
         }
         this.setState({
@@ -43,21 +43,21 @@ class TodoList extends Component {
     render() {
         let items = [];
         _.each(this.props.todos, function(value, key) {
-            if(key === this.state.currEditing) {
+            if (key === this.state.currEditing) {
                 items.push(<TodoInput
-                                key={key}
-                                id={key}
-                                value={value.value}
-                                onSave={this._updateTodo}
-                            />);
+                    key={key}
+                    id={key}
+                    value={value.value}
+                    onSave={this._updateTodo}
+                />);
             } else {
                 items.push(<TodoItem
-                                key={key}
-                                id={key}
-                                value={value.value}
-                                onDelete={this._deleteTodo}
-                                onClick={this._setEditableTodo}
-                            />);
+                    key={key}
+                    id={key}
+                    value={value.value}
+                    onDelete={this._deleteTodo}
+                    onClick={this._setEditableTodo}
+                />);
             }
         }.bind(this));
 

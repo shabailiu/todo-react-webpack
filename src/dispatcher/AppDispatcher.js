@@ -1,7 +1,7 @@
 import {Dispatcher} from 'flux';
 
 // Create dispatcher instance
-var AppDispatcher = new Dispatcher();
+const AppDispatcher = new Dispatcher();
 
 // Convenience method to handle dispatch requests
 AppDispatcher.handleAction = function(action) {
@@ -11,4 +11,4 @@ AppDispatcher.handleAction = function(action) {
     });
 };
 
-module.exports = AppDispatcher;
+export default AppDispatcher;

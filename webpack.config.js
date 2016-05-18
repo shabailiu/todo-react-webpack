@@ -27,7 +27,7 @@ module.exports = {
             loader: 'style-loader!css-loader'
         }, {
             test: /\.less$/,
-            loader:  'style!css!less'
+            loader: 'style!css!less'
         }, {
             test: /\.jpe?g$|\.gif$|\.png$|\.ico$/,
             loader: 'file?name=[name].[ext]'

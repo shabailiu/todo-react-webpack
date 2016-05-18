@@ -22,12 +22,12 @@ class TodoInput extends Component {
 
     _save() {
         // Update todo
-        if(this.props.id) {
+        if (this.props.id) {
             this.props.onSave(this.props.id, this.state.value);
         } else {
             this.props.onSave(this.state.value);
             this.setState({
-               value: ''
+                value: ''
             });
         }
     }
@@ -47,7 +47,7 @@ class TodoInput extends Component {
     render() {
         return (
             <div className="item-new">
-                <input 
+                <input
                     id={this.props.id}
                     type="text"
                     name="content"
@@ -58,7 +58,7 @@ class TodoInput extends Component {
                     onBlur={this._save}
                     value={this.state.value}
                     placeholder={this.props.placeholder}
-                    />
+                />
             </div>
         );
     }
