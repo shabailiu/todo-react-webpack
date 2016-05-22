@@ -3,7 +3,10 @@ import React, {Component, PropTypes} from 'react';
 class TodoItem extends Component {
     render() {
         return (
-            <div className="item" onClick={this.props.onClick.bind(this, this.props.id)}>
+            <div
+                className="item"
+                onClick={this.props.onClick.bind(this, this.props.id)}
+            >
                 <a
                     className="update-link"
                     title="Update this todo item"

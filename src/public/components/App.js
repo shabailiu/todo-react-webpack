@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import TodoList from './TodoList';
-import TodoStore from '../../stores/TodoStore';
 
 function getTodoState() {
     return {
-        todos: TodoStore.todos
+        todos: JSON.parse(localStorage.getItem('todos'))
     };
 }
 
@@ -16,14 +15,6 @@ class App extends Component {
         this._onChange = this._onChange.bind(this);
     }
 
-    componentDidMount() {
-        TodoStore.addChangeListener(this._onChange);
-    }
-
-    componentWillUnmount() {
-        TodoStore.removeChangeListener(this._onChange);
-    }
-
     _onChange() {
         this.setState(getTodoState());
     }
@@ -32,7 +23,7 @@ class App extends Component {
         return (
             <div>
                 <h1 id="page-title">My Todo List</h1>
-                <TodoList todos={this.state.todos}/>
+                <TodoList todos={this.state.todos} onChange={this._onChange}/>
             </div>
         );
     }
