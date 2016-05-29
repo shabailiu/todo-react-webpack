@@ -1,41 +1,40 @@
 import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import {updateTodo, setEditableTodo} from '../actions'
 
 const ENTER_KEY_CODE = 13;
 
 class TodoInput extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            value: '' || props.value
+            value: this.props.value
         };
 
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this._save = this._save.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
+        this._onBlur = this._onBlur.bind(this);
         this._onChange = this._onChange.bind(this);
     }
 
-    componentDidMount() {
-        ReactDOM.findDOMNode(this.refs.input).focus();
-    }
-
-    _save() {
-        // Update todo
-        if (this.props.id) {
-            this.props.onSave(this.props.id, this.state.value);
-        } else {
-            this.props.onSave(this.state.value);
-            this.setState({
-                value: ''
-            });
-        }
-    }
-
     _onKeyDown(event) {
+        const value = this.refs.input.value.trim();
         if (event.keyCode === ENTER_KEY_CODE) {
-            this._save();
+            if (value && value !== this.props.value) {
+                this.props.dispatch(updateTodo(this.refs.input.id, value));
+            }
+
+            this.props.dispatch(setEditableTodo(null));
         }
+    }
+
+    _onBlur(event) {
+        const value = this.refs.input.value.trim();
+        if (value && value !== this.props.value) {
+            this.props.dispatch(updateTodo(this.refs.input.id, value));
+        }
+
+        this.props.dispatch(setEditableTodo(null));
     }
 
     _onChange(event) {
@@ -45,6 +44,8 @@ class TodoInput extends Component {
     }
 
     render() {
+        let input;
+
         return (
             <div className="item-new">
                 <input
@@ -55,19 +56,24 @@ class TodoInput extends Component {
                     className="input"
                     onKeyDown={this._onKeyDown}
                     onChange={this._onChange}
-                    onBlur={this._save}
+                    onBlur={this._onBlur}
                     value={this.state.value}
                     placeholder={this.props.placeholder}
+                    autoFocus={this.props.autoFocus}
                 />
             </div>
         );
     }
 }
 
+
 TodoInput.propTypes = {
     id: PropTypes.string,
-    onSave: PropTypes.func.isRequired,
-    placeholder: PropTypes.string
+    value: PropTypes.string,
+    placeholder: PropTypes.string,
+    autoFocus: PropTypes.bool
 };
+
+TodoInput = connect()(TodoInput);
 
 export default TodoInput;
