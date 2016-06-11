@@ -94,4 +94,9 @@ class TodoList extends Component {
     }
 }
 
+TodoList.propTypes = {
+    todos: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired
+};
+
 export default TodoList;

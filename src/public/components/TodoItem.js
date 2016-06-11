@@ -24,7 +24,8 @@ class TodoItem extends Component {
 TodoItem.propTypes = {
     id: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
 };
 
 export default TodoItem;
