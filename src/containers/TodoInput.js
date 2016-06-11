@@ -8,13 +8,12 @@ class TodoInput extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            value: this.props.value
-        };
-
         this._onKeyDown = this._onKeyDown.bind(this);
         this._onBlur = this._onBlur.bind(this);
-        this._onChange = this._onChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.refs.input.value = this.props.value;
     }
 
     _onKeyDown(event) {
@@ -37,12 +36,6 @@ class TodoInput extends Component {
         this.props.dispatch(setEditableTodo(null));
     }
 
-    _onChange(event) {
-        this.setState({
-            value: event.target.value
-        });
-    }
-
     render() {
         let input;
 
@@ -55,9 +48,7 @@ class TodoInput extends Component {
                     ref="input"
                     className="input"
                     onKeyDown={this._onKeyDown}
-                    onChange={this._onChange}
                     onBlur={this._onBlur}
-                    value={this.state.value}
                     placeholder={this.props.placeholder}
                     autoFocus={this.props.autoFocus}
                 />

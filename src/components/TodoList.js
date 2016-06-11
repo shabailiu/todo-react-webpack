@@ -38,7 +38,9 @@ const TodoList = ({todos, currEditing, deleteTodo, setEditableTodo}) => {
 
 TodoList.propTypes = {
     todos: PropTypes.object.isRequired,
-    currEditing: PropTypes.string
+    currEditing: PropTypes.string,
+    deleteTodo: PropTypes.func.isRequired,
+    setEditableTodo: PropTypes.func
 };
 
 export default TodoList;
