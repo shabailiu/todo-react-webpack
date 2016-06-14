@@ -5,8 +5,8 @@ import {updateTodo, setEditableTodo} from '../actions'
 const ENTER_KEY_CODE = 13;
 
 class TodoInput extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this._onKeyDown = this._onKeyDown.bind(this);
         this._onBlur = this._onBlur.bind(this);

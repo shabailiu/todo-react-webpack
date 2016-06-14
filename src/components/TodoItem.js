@@ -1,23 +1,30 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 
-function _onDelete(onDelete, event) {
-    event.stopPropagation();
-    onDelete();
+class TodoItem extends Component {
+
+    _onDelete(onDelete, event) {
+        event.stopPropagation(); // Prevent SET_EDITABLE_TODO action from being triggered
+        onDelete();
+    }
+
+    render() {
+        const {id, value, onDelete, onClick} = this.props;
+
+        return (
+            <div className="item" onClick={onClick}>
+                <a
+                    className="update-link"
+                    title="Update this todo item"
+                >{value}</a>
+                <a
+                    className="del-btn"
+                    title="Delete this todo item"
+                    onClick={this._onDelete.bind(null, onDelete)}
+                >Delete</a>
+            </div>
+        );
+    }
 }
-
-const TodoItem = ({id, value, onDelete, onClick}) => (
-    <div className="item" onClick={onClick}>
-        <a
-            className="update-link"
-            title="Update this todo item"
-        >{value}</a>
-        <a
-            className="del-btn"
-            title="Delete this todo item"
-            onClick={_onDelete.bind(null, onDelete)}
-        >Delete</a>
-    </div>
-);
 
 TodoItem.propTypes = {
     id: PropTypes.string.isRequired,
