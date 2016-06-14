@@ -10,7 +10,6 @@ class AddTodo extends Component {
         super();
 
         this._onKeyDown = this._onKeyDown.bind(this);
-        this._onBlur = this._onBlur.bind(this);
     }
 
     _onKeyDown(event) {
@@ -20,13 +19,6 @@ class AddTodo extends Component {
         if (event.keyCode === ENTER_KEY_CODE && value) {
             this.props.dispatch(addTodo(value));
             input.value = '';
-        }
-    }
-
-    _onBlur(event) {
-        const value = this.refs.input.value.trim();
-        if (value) {
-            this.props.dispatch(addTodo(value));
         }
     }
 
@@ -41,7 +33,6 @@ class AddTodo extends Component {
                     ref="input"
                     className="input"
                     onKeyDown={this._onKeyDown}
-                    onBlur={this._onBlur}
                     placeholder={placeholder}
                 />
             </div>
